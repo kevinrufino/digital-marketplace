@@ -1,4 +1,3 @@
-// contracts/NFT.sol
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.4;
 
@@ -7,14 +6,14 @@ import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
-contract NFT is ERC721, Ownable {
+contract PlayerNFT is ERC721, Ownable {
     using Strings for uint256;
     using Counters for Counters.Counter;
     Counters.Counter private _tokenIds; // gives unique identifier for tokens
     address contractAddress; // address of marketplace. It has the ability to change token owners
 
-    string public uriPrefix = "https://ipfs.io/ipfs/QmS5R3cwoYxNwjqHBetC9AmZSb7Ya6Ttp5cPf58Lg7SXkP/";
-    string public uriSuffix = "";
+    string public uriPrefix = "https://raw.githubusercontent.com/jozanza/anonymice-images/main/";
+    string public uriSuffix = ".png";
     string public hiddenMetadataUri;
     
     uint256 public cost = 0.01 ether;
@@ -26,9 +25,10 @@ contract NFT is ERC721, Ownable {
 
     constructor(address marketplaceAddress) ERC721("NAME", "SYMBOL") {
         contractAddress = marketplaceAddress; //this allows us to use marketplace address anywhere in this contract
-        setHiddenMetadataUri("https://i.imgur.com/aoO44yf.jpeg");
+        setHiddenMetadataUri("https://raw.githubusercontent.com/jozanza/anonymice-images/main/1678.png");
     }
 
+    // take results and randomize token id for 1155
     // function createToken(string memory tokenURI) public returns (uint) {
     //     _tokenIds.increment(); //increments
     //     uint newItemId = _tokenIds.current(); //get current id

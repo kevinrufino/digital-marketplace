@@ -14,19 +14,42 @@ async function main() {
   // await hre.run('compile');
 
   // We get the contract to deploy
-  const Market = await hre.ethers.getContractFactory("Market");
-  const market = await Market.deploy();
+  const PhunkNFT = await hre.ethers.getContractFactory("TownsNFT");
+  const phunkNFT = await PhunkNFT.deploy();
 
-  await market.deployed();
+  await phunkNFT.deployed();
 
-  console.log("Market deployed to:", market.address);
+  console.log("TownNFT deployed to:", phunkNFT.address);
 
-  const NFT = await hre.ethers.getContractFactory("NFT");
-  const nft = await NFT.deploy(market.address);
+  const PhunkMarket = await hre.ethers.getContractFactory("ItemMarketplace");
+  const phunkMarket = await PhunkMarket.deploy(phunkNFT.address);
 
-  await nft.deployed();
+  await phunkMarket.deployed();
 
-  console.log("NFT deployed to:", nft.address);
+  console.log("ItemMarket deployed to:", phunkMarket.address);
+
+  const OpenMining = await hre.ethers.getContractFactory("OpenMining");
+  const openMining = await OpenMining.deploy();
+
+  await openMining.deployed();
+
+  console.log("OpenMining deployed to:", openMining.address);
+
+  const PlayerNFT = await hre.ethers.getContractFactory("PlayerNFT");
+  const playerNFT = await PlayerNFT.deploy(phunkNFT.address);
+
+  await playerNFT.deployed();
+
+  console.log("PlayerNFT deployed to:", playerNFT.address);
+
+  const Raid = await hre.ethers.getContractFactory("Raid");
+  const raid = await Raid.deploy();
+
+  await raid.deployed();
+
+  console.log("Raid deployed to:", raid.address);
+
+  
 }
 
 // We recommend this pattern to be able to use async/await everywhere
