@@ -10,6 +10,9 @@ function MyApp({ Component, pageProps }) {
           <Link href='/'>
             <a className='mr-6'>Home</a>
           </Link>
+          <Link href='/gameplay'>
+            <a className='mr-6'>Gameplay</a>
+          </Link>
           <Link href='/market'>
             <a className='mr-6'>Market</a>
           </Link>
